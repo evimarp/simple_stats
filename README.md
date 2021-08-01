@@ -3,11 +3,12 @@
 Computes some basic statistics on a collection of small positive integer.
 <!-- GETTING STARTED -->
 ## Getting Started
+The core class is the `DataCapture` class, that add numbers to the collection, and creates a stats object, to query some stats (less, greater, between).
 
 The DataCapture object accepts numbers and returns an object for querying statistics about the inputs. Specifically, the returned object supports querying how many numbers in the collection are less than a value, greater than a value, or within a range.
 ### Prerequisites
 
-- Requires python 3.
+- Requires python 3.6+
 
 ### Installation
 
@@ -15,13 +16,15 @@ The DataCapture object accepts numbers and returns an object for querying statis
    ```sh
    git clone https://github.com/evimarp/simple_stats.git
    ```
-2. Enter directory
+2. It's recommended create a virtual environment with `python3` and `pip` on it. 
+[See more](https://docs.python.org/3/library/venv.html#module-venv)
    ```sh
-   cd simple_stats
+   python3 -m venv ./venv
    ```
-3. Enter python3 shell
+
+3. Install the requirements with pip.
    ```sh
-   python3
+   pip install -r requirements.txt
    ```
 
 
@@ -61,7 +64,19 @@ capture.add(4, 6)
 capture.add(3)
 ```
 
+##Testing
+Use `pytest` command for run the test suite in the command line.
+```sh
+>>> pytest
+============================================================== test session starts ===============================================================
+platform linux -- Python 3.9.1, pytest-6.2.4, py-1.10.0, pluggy-0.13.1
+rootdir: ...
+collected 4 items                                                                                                                                
 
+test/test_stats.py ....                                                                                                                    [100%]
+
+=============================================================== 4 passed in 0.02s ================================================================
+```
 
 <!-- LICENSE -->
 ## License
