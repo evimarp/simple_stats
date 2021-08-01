@@ -1,5 +1,5 @@
-# /test_stats.py
-from .stats import DataCapture
+# test/test_stats.py
+from ..stats import DataCapture
 
 
 class TestDataCapture:
