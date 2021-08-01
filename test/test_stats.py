@@ -1,4 +1,5 @@
 # test/test_stats.py
+from pytest import raises
 from ..stats import DataCapture
 
 
@@ -13,7 +14,9 @@ class TestDataCapture:
         """ Test
         - add a number.
         - Less than the first
-        - Greater than greatest """
+        - Greater than greatest
+        - Between same number
+        """
         capture = DataCapture()
         capture.add(3)
         capture.add(6)
@@ -57,3 +60,21 @@ class TestDataCapture:
         assert stats.greater(11) == 2
         assert stats.between(1, 13) == 9
 
+    def test_between_disorder(self):
+        """ Between left greater then right. It must failed.
+        """
+        capture = DataCapture(1, 10, 100)
+        stats = capture.build_stats()
+        with raises(AssertionError):
+            stats.between(100, 1)
+
+    def test_invalid_input(self):
+        """Test invalid inputs, numbers never captures"""
+        capture = DataCapture(1, 10, 100)
+        stats = capture.build_stats()
+        with raises(ValueError):
+            stats.between(1, 2)
+            stats.between(11, 100)
+            stats.between(8, 9)
+            stats.less(12)
+            stats.greater(1000)
