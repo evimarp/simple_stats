@@ -26,7 +26,7 @@ def validate_input(func):
         values = [*args, *kwargs.values()]
         for number in values:
             if number not in self._less:
-                raise ValueError('Invalid number for stats: %r' % (number, ))
+                raise ValueError('Invalid input number for stats: %r' % (number, ))
         return func(self, *args, **kwargs)
 
     return wrapper
@@ -80,6 +80,8 @@ class DataCapture(object):
         self._sorted_keys = list()
 
     def add(self, *numbers: Iterable):
+        """ Add numbers to the data capture.
+        """
         self._data += Counter(numbers)
         for number in numbers:
             if number not in self._sorted_keys:
