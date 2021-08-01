@@ -1,3 +1,19 @@
+"""
+Usage:
+>>> capture = DataCapture()
+>>> capture.add(3)
+>>> capture.add(9)
+>>> capture.add(3)
+>>> capture.add(4)
+>>> capture.add(6)
+>>> stats = capture.build_stats()
+>>> stats.less(4) # should return 2 (only two values 3, 3 are less than 4)
+2
+>>> stats.between(3, 6) # should return 4 (3, 3, 4 and 6 are between 3 and 6)
+4
+>>> stats.greater(4) # should return 2 (6 and 9 are the only two values greater than 4)
+2
+"""
 from collections import Counter
 from bisect import bisect
 from typing import List, Dict, Iterable
@@ -57,24 +73,6 @@ class Stats:
 class DataCapture(object):
     """ Captures the input and generate stats of small integers.
 
-    >>> datacapture = DataCapture()
-    >>> datacapture.add(10)
-    >>> datacapture.add(1)
-    >>> datacapture.add(5)
-    >>> datacapture._sorted_keys
-    [1, 5, 10]
-    >>> datacapture.add(1)
-    >>> datacapture._sorted_keys
-    [1, 5, 10]
-    >>> datacapture._data[1]
-    2
-    >>> datacapture._data[5]
-    1
-    >>> datacapture._data[8]
-    0
-    >>> stats = datacapture.build_stats()
-    >>> stats.less(1)
-    0
     """
 
     def __init__(self) -> None:
