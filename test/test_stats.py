@@ -60,7 +60,7 @@ class TestDataCapture:
         assert stats.greater(11) == 2
         assert stats.between(1, 13) == 9
 
-    def test_between_disorder(self):
+    def test_between_invalid_range(self):
         """ Between left greater then right. It must failed.
         """
         capture = DataCapture(1, 10, 100)
@@ -69,7 +69,7 @@ class TestDataCapture:
             stats.between(100, 1)
 
     def test_invalid_input(self):
-        """Test invalid inputs, numbers never captures"""
+        """Test invalid inputs, numbers never captured."""
         capture = DataCapture(1, 10, 100)
         stats = capture.build_stats()
         with raises(ValueError):
