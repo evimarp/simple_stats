@@ -1,11 +1,6 @@
 """
 Usage:
->>> capture = DataCapture()
->>> capture.add(3)
->>> capture.add(9)
->>> capture.add(3)
->>> capture.add(4)
->>> capture.add(6)
+>>> capture = DataCapture(3, 9, 3, 4, 6)
 >>> stats = capture.build_stats()
 >>> stats.less(4) # should return 2 (only two values 3, 3 are less than 4)
 2
@@ -58,7 +53,9 @@ class Stats:
         """ How many items are in the collection that are between left and right numbers, both inclusive.
 
         Requires input numbers left and right must be part of the collection.
+        left must be less or equal to right
         """
+        assert left <= right, 'Invalid range'
         return self._less[right] + self._counts[right] - self._less[left]
 
     @validate_input
@@ -75,11 +72,12 @@ class DataCapture(object):
 
     """
 
-    def __init__(self) -> None:
+    def __init__(self, *numbers: Iterable[int]) -> None:
         self._data = Counter()
         self._sorted_keys = list()
+        self.add(*numbers)
 
-    def add(self, *numbers: Iterable):
+    def add(self, *numbers: Iterable[int]):
         """ Add numbers to the data capture.
         """
         self._data += Counter(numbers)
