@@ -68,7 +68,7 @@ class Stats:
         return self._total - self._less[number] - self._counts[number]
 
     def _is_valid(self, input):
-        return isinstance(input, int) and input <= self.MAX_INPUT
+        return isinstance(input, int) and 0 <= input <= self.MAX_INPUT
 
 
 class DataCapture(object):
