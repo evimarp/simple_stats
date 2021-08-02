@@ -31,7 +31,7 @@ class Stats:
     """ Gives simple stats of a collection of positive small integers."""
     MAX_INPUT = 1000
 
-    def __init__(self, counts: Dict, sorted_keys: List[int]):
+    def __init__(self, counts: Dict):
         self._less = dict()
 
         acum = 0
@@ -78,20 +78,15 @@ class DataCapture(object):
 
     def __init__(self, *numbers: Iterable[int]) -> None:
         self._data = Counter()
-        self._sorted_keys = list()
         self.add(*numbers)
 
     def add(self, *numbers: Iterable[int]):
         """ Add numbers to the data capture.
         """
         self._data += Counter(numbers)
-        for number in numbers:
-            if number not in self._sorted_keys:
-                index = bisect(self._sorted_keys, number)
-                self._sorted_keys.insert(index, number)
 
     def build_stats(self) -> Stats:
-        return Stats(self._data, self._sorted_keys)
+        return Stats(self._data)
 
 
 if __name__ == '__main__':
