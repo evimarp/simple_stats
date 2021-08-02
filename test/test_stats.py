@@ -81,3 +81,12 @@ class TestDataCapture:
         assert stats.greater(1000) == 0
         assert stats.between(2, 6) == 2
 
+    def test_invalid_input(self):
+        """ Test raise value error for inputs greater than Max"""
+        values = [1] * 10
+        capture = DataCapture(*values)
+        stats = capture.build_stats()
+        with raises(ValueError):
+            stats.less(stats.MAX_INPUT + 1)
+
+
