@@ -74,7 +74,12 @@ class TestDataCapture:
         stats = capture.build_stats()
         with raises(ValueError):
             stats.between(1, 2)
+        with raises(ValueError):
             stats.between(11, 100)
+        with raises(ValueError):
             stats.between(8, 9)
+        with raises(ValueError):
             stats.less(12)
+        with raises(ValueError):
             stats.greater(1000)
+
