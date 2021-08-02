@@ -40,13 +40,6 @@ Several ways to add number into the collection.
 >>> capture.add(3)
 >>> capture.add(4)
 >>> capture.add(6)
->>> stats = capture.build_stats()
->>> stats.less(4) # should return 2 (only two values 3, 3 are less than 4)
-2
->>> stats.between(3, 6) # should return 4 (3, 3, 4 and 6 are between 3 and 6)
-4
->>> stats.greater(4) # should return 2 (6 and 9 are the only two values greater than 4)
-2
 ```
 - Also you can capture several items at once.
 ```pydocstring
@@ -62,6 +55,32 @@ capture = DataCapture(3, 3, 4, 6)
 capture = DataCapture(3)
 capture.add(4, 6)
 capture.add(3)
+```
+### Quering stats
+After finish capture all data, you can generate `stats` object with `build_stats` method.
+```pydocstring
+>>> stats = capture.build_stats()
+```
+With this `stats` objects, you can invoke methods to query stats.
+
+**Important: You can only query stats from numbers that have already been added.**
+#### Query: Less than
+To know how many items are less than a specific number.    
+```pydocstring
+>>> stats.less(4) # should return 2 (only two values 3, 3 are less than 4)
+2
+```
+#### Query: Greater than
+To know how many items are great than a specific number.    
+```pydocstring
+>>> stats.greater(4) # should return 2 (6 and 9 are the only two values greater than 4)
+2
+```
+#### Query: Between
+To know how many items are between a specific range.    
+```pydocstring
+>>> stats.between(3, 6) # should return 4 (3, 3, 4 and 6 are between 3 and 6)
+4
 ```
 
 ##Testing
