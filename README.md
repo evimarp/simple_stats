@@ -45,7 +45,7 @@ Several ways to add number into the collection.
 ```pydocstring
 >>> capture.add(3, 3, 4, 6)
 ```
-- or passing a list of integers at initialize time. 
+- or passing a list of integers at initialization time. 
 ```python
 capture = DataCapture(3, 3, 4, 6)
 ```
