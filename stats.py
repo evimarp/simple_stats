@@ -29,12 +29,13 @@ def validate_input(func):
 
 class Stats:
     """ Gives simple stats of a collection of positive small integers."""
-    
+    MAX_INPUT = 1000
+
     def __init__(self, counts: Dict, sorted_keys: List[int]):
         self._less = dict()
 
         acum = 0
-        for key in sorted_keys:
+        for key in range(self.MAX_INPUT + 1):
             self._less[key] = acum
             acum += counts[key]
         self._total = acum
@@ -67,7 +68,7 @@ class Stats:
         return self._total - self._less[number] - self._counts[number]
 
     def _is_valid(self, input):
-        return input in self._less
+        return isinstance(input, int) and input <= self.MAX_INPUT
 
 
 class DataCapture(object):
