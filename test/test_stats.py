@@ -68,18 +68,13 @@ class TestDataCapture:
         with raises(AssertionError):
             stats.between(100, 1)
 
-    def test_invalid_input(self):
+    def test_input_for_values_never_added_before(self):
         """Test invalid inputs, numbers never captured."""
-        capture = DataCapture(1, 10, 100)
+        capture = DataCapture(1, 3, 5)
         stats = capture.build_stats()
-        with raises(ValueError):
-            stats.between(1, 2)
-        with raises(ValueError):
-            stats.between(11, 100)
-        with raises(ValueError):
-            stats.between(8, 9)
-        with raises(ValueError):
-            stats.less(12)
-        with raises(ValueError):
-            stats.greater(1000)
+        assert stats.less(6) == 3
+        assert stats.greater(6) == 0
+        assert stats.between(8, 9) == 0
+        assert stats.greater(1000) == 0
+        assert stats.between(2, 6) == 2
 
