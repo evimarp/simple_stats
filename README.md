@@ -63,7 +63,7 @@ After finish capture all data, you can generate `stats` object with `build_stats
 ```
 With this `stats` objects, you can invoke methods to query stats.
 
-**Important: You can only query stats from numbers that have already been added.**
+**Important: You can only query stats from numbers that are small positive integer up to 1000 included.**
 #### Query: Less than
 To know how many items are less than a specific number.    
 ```pydocstring
