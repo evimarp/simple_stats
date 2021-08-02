@@ -20,7 +20,7 @@ def validate_input(func):
     def wrapper(self, *args, **kwargs):
         values = [*args, *kwargs.values()]
         for number in values:
-            if number not in self._less:
+            if not self._is_valid(number):
                 raise ValueError('Invalid input number for stats: %r' % (number, ))
         return func(self, *args, **kwargs)
 
@@ -65,6 +65,9 @@ class Stats:
         Requires input number must be part of the collection.
         """
         return self._total - self._less[number] - self._counts[number]
+
+    def _is_valid(self, input):
+        return input in self._less
 
 
 class DataCapture(object):
