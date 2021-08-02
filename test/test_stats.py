@@ -9,6 +9,9 @@ class TestDataCapture:
         """ Test constructs stats from an empty collection."""
         capture = DataCapture()
         stats = capture.build_stats()
+        assert stats.greater(10) == 0
+        assert stats.between(1, 1000) == 0
+        assert stats.less(999) == 0
 
     def test_datacapture_simple_add(self):
         """ Test
@@ -69,7 +72,7 @@ class TestDataCapture:
             stats.between(100, 1)
 
     def test_input_for_values_never_added_before(self):
-        """Test invalid inputs, numbers never captured."""
+        """Test inputs, numbers never captured."""
         capture = DataCapture(1, 3, 5)
         stats = capture.build_stats()
         assert stats.less(6) == 3
